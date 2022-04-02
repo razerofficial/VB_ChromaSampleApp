@@ -59,7 +59,7 @@ Class SampleApp
 
     Public Function Start()
         Dim appInfo As ChromaSDK.APPINFOTYPE = New APPINFOTYPE()
-        appInfo.Title = "Razer Chroma CSharp Sample Application"
+        appInfo.Title = "Razer Chroma VB Sample Application"
         appInfo.Description = "A sample application using Razer Chroma SDK"
 
         appInfo.Author_Name = "Razer"

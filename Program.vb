@@ -55,13 +55,14 @@ Module Program
         Dim sampleApp As SampleApp = New SampleApp()
         sampleApp.Start()
 
-        Dim startIndex As Integer = 1
-
-        If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
-            startIndex = -9
-        End If
-
         If sampleApp.GetInitResult().Equals(RazerErrors.RZRESULT_SUCCESS) Then
+
+            Dim startIndex As Integer = 1
+
+            If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
+                startIndex = -9
+            End If
+
             Dim selectedIndex As Integer = 1
 
             If (ChromaAnimationAPI.CoreStreamSupportsStreaming()) Then
