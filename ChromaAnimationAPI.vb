@@ -1932,7 +1932,8 @@ Namespace ChromaSDK
         REM /// avoid calling stream methods.
         REM /// </summary>
         Public Function CoreStreamSupportsStreaming() As Boolean
-            Dim result As Boolean = PluginCoreStreamSupportsStreaming()
+            Dim result As Boolean = False
+            REM Dim result As Boolean = PluginCoreStreamSupportsStreaming()
             Return result
         End Function
 
