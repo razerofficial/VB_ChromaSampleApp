@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{761EDE8B-E701-4D64-8C6F-C3613672806A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <StartupObject>VB_ChromaSampleApp.Module1</StartupObject>
+    <StartupObject>VB_ChromaSampleApp.SampleApp</StartupObject>
     <RootNamespace>VB_ChromaSampleApp</RootNamespace>
     <AssemblyName>VB_ChromaSampleApp</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -118,7 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChromaAnimationAPI.vb" />
-    <Compile Include="Module1.vb" />
+    <Compile Include="SampleApp.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -1,6 +1,6 @@
 ﻿Imports VB_ChromaSampleApp.ChromaSDK
 
-Module Module1
+Module SampleApp
 
     Sub Main()
 
