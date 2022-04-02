@@ -97,25 +97,25 @@ Class SampleApp
     Public Function GetEffectName(Index As Integer) As String
         Select Case (Index)
             Case -9
-                Return "Request Shortcode\t"
+                Return "Request Shortcode" & ControlChars.Tab
             Case -8
-                Return "Request StreamId\t"
+                Return "Request StreamId" & ControlChars.Tab
             Case -7
-                Return "Request StreamKey\t"
+                Return "Request StreamKey" & ControlChars.Tab
             Case -6
-                Return "Release Shortcode\r\n"
+                Return "Release Shortcode" & vbCrLf
             Case -5
-                Return "Broadcast\t\t"
+                Return "Broadcast" & ControlChars.Tab & ControlChars.Tab
             Case -4
-                Return "BroadcastEnd\r\n"
+                Return "BroadcastEnd" & vbCrLf
             Case -3
-                Return "Watch\t\t"
+                Return "Watch" & ControlChars.Tab & ControlChars.Tab
             Case -2
-                Return "WatchEnd\r\n"
+                Return "WatchEnd" & vbCrLf
             Case -1
-                Return "GetFocus\t\t"
+                Return "GetFocus" & ControlChars.Tab & ControlChars.Tab
             Case 0
-                Return "SetFocus\r\n"
+                Return "SetFocus" & vbCrLf
             Case Else
                 Return String.Format("Effect{0}", Index)
         End Select

@@ -8,7 +8,7 @@ Module Program
 
     Private Function PrintLegend(app As SampleApp, selectedIndex As Integer)
 
-        Console.WriteLine("C# CHROMA SAMPLE APP")
+        Console.WriteLine("VB CHROMA SAMPLE APP")
         Console.WriteLine()
         Console.WriteLine("Use UP and DOWN arrows to select an animation and press ENTER.")
         Console.WriteLine()
@@ -39,7 +39,7 @@ Module Program
                 If (index Mod 4).Equals(0) Then
                     Console.WriteLine()
                 Else
-                    Console.Write("\t\t")
+                    Console.Write(ControlChars.Tab & ControlChars.Tab)
                 End If
             End If
         Next
