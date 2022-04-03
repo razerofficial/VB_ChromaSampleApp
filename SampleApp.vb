@@ -128,6 +128,9 @@ Class SampleApp
                     _mShortCode = ChromaSDK.Stream._Default.Shortcode
                     _mLenShortCode = 0
                     ChromaAnimationAPI.CoreStreamGetAuthShortcode(_mShortCode, _mLenShortCode, "PC", "VB Sample App 好")
+                    If _mLenShortCode > 0 Then
+                        _mShortCode = _mShortCode.Substring(0, _mLenShortCode)
+                    End If
                 End If
             Case -8
                 If supportsStreaming Then
