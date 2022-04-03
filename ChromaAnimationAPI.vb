@@ -1932,8 +1932,7 @@ Namespace ChromaSDK
         REM /// avoid calling stream methods.
         REM /// </summary>
         Public Function CoreStreamSupportsStreaming() As Boolean
-            Dim result As Boolean = False
-            'Dim result As Boolean = PluginCoreStreamSupportsStreaming()
+            Dim result As Boolean = PluginCoreStreamSupportsStreaming()
             Return result
         End Function
 
@@ -7327,7 +7326,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginCoreStreamBroadcast(const char* streamId, const char* streamKey);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginCoreStreamBroadcast(streamId As IntPtr, streamKey As IntPtr) As Boolean
+        Private Function PluginCoreStreamBroadcast(streamId As IntPtr, streamKey As IntPtr) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -7336,7 +7335,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginCoreStreamBroadcastEnd();
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginCoreStreamBroadcastEnd() As Boolean
+        Private Function PluginCoreStreamBroadcastEnd() As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -7361,7 +7360,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginCoreStreamGetFocus(char* focus, unsigned char* length);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginCoreStreamGetFocus(focus As IntPtr, ByRef length As Byte) As Boolean
+        Private Function PluginCoreStreamGetFocus(focus As IntPtr, ByRef length As Byte) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -7427,7 +7426,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginCoreStreamReleaseShortcode(const char* shortcode);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginCoreStreamReleaseShortcode(shortcode As IntPtr) As Boolean
+        Private Function PluginCoreStreamReleaseShortcode(shortcode As IntPtr) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -7437,7 +7436,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginCoreStreamSetFocus(const char* focus);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginCoreStreamSetFocus(focus As IntPtr) As Boolean
+        Private Function PluginCoreStreamSetFocus(focus As IntPtr) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -7446,7 +7445,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginCoreStreamSupportsStreaming();
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginCoreStreamSupportsStreaming() As Boolean
+        Private Function PluginCoreStreamSupportsStreaming() As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -7456,7 +7455,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginCoreStreamWatch(const char* streamId, unsigned long long timestamp);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginCoreStreamWatch(streamId As IntPtr, timestamp As ULong) As Boolean
+        Private Function PluginCoreStreamWatch(streamId As IntPtr, timestamp As ULong) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -7465,7 +7464,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginCoreStreamWatchEnd();
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginCoreStreamWatchEnd() As Boolean
+        Private Function PluginCoreStreamWatchEnd() As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8649,7 +8648,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginHasAnimationLoop(int animationId);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginHasAnimationLoop(animationId As Integer) As Boolean
+        Private Function PluginHasAnimationLoop(animationId As Integer) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8657,7 +8656,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginHasAnimationLoopName(const char* path);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginHasAnimationLoopName(path As IntPtr) As Boolean
+        Private Function PluginHasAnimationLoopName(path As IntPtr) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8802,7 +8801,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginIsAnimationPaused(int animationId);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginIsAnimationPaused(animationId As Integer) As Boolean
+        Private Function PluginIsAnimationPaused(animationId As Integer) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8810,7 +8809,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginIsAnimationPausedName(const char* path);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginIsAnimationPausedName(path As IntPtr) As Boolean
+        Private Function PluginIsAnimationPausedName(path As IntPtr) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8827,7 +8826,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginIsDialogOpen();
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginIsDialogOpen() As Boolean
+        Private Function PluginIsDialogOpen() As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8844,7 +8843,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginIsInitialized();
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginIsInitialized() As Boolean
+        Private Function PluginIsInitialized() As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8860,7 +8859,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginIsPlatformSupported();
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginIsPlatformSupported() As Boolean
+        Private Function PluginIsPlatformSupported() As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8879,7 +8878,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginIsPlaying(int animationId);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginIsPlaying(animationId As Integer) As Boolean
+        Private Function PluginIsPlaying(animationId As Integer) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8898,7 +8897,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginIsPlayingName(const char* path);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginIsPlayingName(path As IntPtr) As Boolean
+        Private Function PluginIsPlayingName(path As IntPtr) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>
@@ -8916,7 +8915,7 @@ Namespace ChromaSDK
         REM /// EXPORT_API bool PluginIsPlayingType(int deviceType, int device);
         REM /// </summary>
         <DllImport(DLL_NAME, CallingConvention:=CallingConvention.Cdecl)>
-        Private Function PluginIsPlayingType(deviceType As Integer, device As Integer) As Boolean
+        Private Function PluginIsPlayingType(deviceType As Integer, device As Integer) As <MarshalAs(UnmanagedType.I1)> Boolean
         End Function
 
         REM /// <summary>

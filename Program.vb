@@ -6,7 +6,7 @@ Module Program
 
     Private Const MAX_ITEMS As Integer = 47
 
-    Private Function PrintLegend(app As SampleApp, selectedIndex As Integer)
+    Private Function PrintLegend(app As SampleApp, selectedIndex As Integer, supportsStreaming As Boolean)
 
         Console.WriteLine("VB CHROMA SAMPLE APP")
         Console.WriteLine()
@@ -15,7 +15,7 @@ Module Program
 
         Dim startIndex As Integer = 1
 
-        If (ChromaAnimationAPI.CoreStreamSupportsStreaming()) Then
+        If (supportsStreaming) Then
             startIndex = -9
             Console.WriteLine("Streaming Info (SUPPORTED):")
             Dim status As ChromaSDK.Stream.StreamStatusType = ChromaAnimationAPI.CoreStreamGetStatus()
@@ -57,15 +57,17 @@ Module Program
 
         If sampleApp.GetInitResult().Equals(RazerErrors.RZRESULT_SUCCESS) Then
 
+            Dim supportsStreaming As Boolean = ChromaAnimationAPI.CoreStreamSupportsStreaming()
+
             Dim startIndex As Integer = 1
 
-            If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
+            If supportsStreaming Then
                 startIndex = -9
             End If
 
             Dim selectedIndex As Integer = 1
 
-            If (ChromaAnimationAPI.CoreStreamSupportsStreaming()) Then
+            If supportsStreaming Then
                 selectedIndex = -9
             End If
 
@@ -74,7 +76,7 @@ Module Program
             While (True)
                 If inputTimer < DateTime.Now Then
                     Console.Clear()
-                    PrintLegend(sampleApp, selectedIndex)
+                    PrintLegend(sampleApp, selectedIndex, supportsStreaming)
                     inputTimer = DateTime.Now + TimeSpan.FromMilliseconds(100)
                 End If
                 Dim keyInfo As ConsoleKeyInfo = Console.ReadKey()
@@ -90,7 +92,7 @@ Module Program
                 ElseIf keyInfo.Key.Equals(ConsoleKey.Escape) Then
                     Exit While
                 ElseIf keyInfo.Key.Equals(ConsoleKey.Enter) Then
-                    sampleApp.ExecuteItem(selectedIndex)
+                    sampleApp.ExecuteItem(selectedIndex, supportsStreaming)
                 End If
                 Thread.Sleep(1)
             End While

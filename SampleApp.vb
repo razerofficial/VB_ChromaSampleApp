@@ -121,16 +121,16 @@ Class SampleApp
         End Select
     End Function
 
-    Public Function ExecuteItem(index As Integer)
+    Public Function ExecuteItem(index As Integer, supportsStreaming As Boolean)
         Select Case (index)
             Case -9
-                If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
+                If supportsStreaming Then
                     _mShortCode = ChromaSDK.Stream._Default.Shortcode
                     _mLenShortCode = 0
                     ChromaAnimationAPI.CoreStreamGetAuthShortcode(_mShortCode, _mLenShortCode, "PC", "VB Sample App 好")
                 End If
             Case -8
-                If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
+                If supportsStreaming Then
                     _mStreamId = ChromaSDK.Stream._Default.StreamId
                     _mLenStreamId = 0
                     ChromaAnimationAPI.CoreStreamGetId(_mShortCode, _mStreamId, _mLenStreamId)
@@ -139,7 +139,7 @@ Class SampleApp
                     End If
                 End If
             Case -7
-                If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
+                If supportsStreaming Then
                     _mStreamKey = ChromaSDK.Stream._Default.StreamKey
                     _mLenStreamKey = 0
                     ChromaAnimationAPI.CoreStreamGetKey(_mShortCode, _mStreamKey, _mLenStreamKey)
@@ -148,34 +148,34 @@ Class SampleApp
                     End If
                 End If
             Case -6
-                If (ChromaAnimationAPI.CoreStreamSupportsStreaming() And ChromaAnimationAPI.CoreStreamReleaseShortcode(_mShortCode)) Then
+                If (supportsStreaming And ChromaAnimationAPI.CoreStreamReleaseShortcode(_mShortCode)) Then
                     _mShortCode = ChromaSDK.Stream._Default.Shortcode
                     _mLenShortCode = 0
                 End If
             Case -5
-                If (ChromaAnimationAPI.CoreStreamSupportsStreaming() And _mLenStreamId > 0 And _mLenStreamKey > 0) Then
+                If (supportsStreaming And _mLenStreamId > 0 And _mLenStreamKey > 0) Then
                     ChromaAnimationAPI.CoreStreamBroadcast(_mStreamId, _mStreamKey)
                 End If
             Case -4
-                If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
+                If supportsStreaming Then
                     ChromaAnimationAPI.CoreStreamBroadcastEnd()
                 End If
             Case -3
-                If (ChromaAnimationAPI.CoreStreamSupportsStreaming() And _mLenStreamId > 0) Then
+                If (supportsStreaming And _mLenStreamId > 0) Then
                     ChromaAnimationAPI.CoreStreamWatch(_mStreamId, 0)
                 End If
             Case -2
-                If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
+                If supportsStreaming Then
                     ChromaAnimationAPI.CoreStreamWatchEnd()
                 End If
             Case -1
-                If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
+                If supportsStreaming Then
                     _mStreamFocus = ChromaSDK.Stream._Default.StreamFocus
                     _mLenStreamFocus = 0
                     ChromaAnimationAPI.CoreStreamGetFocus(_mStreamFocus, _mLenStreamFocus)
                 End If
             Case 0
-                If ChromaAnimationAPI.CoreStreamSupportsStreaming() Then
+                If supportsStreaming Then
                     ChromaAnimationAPI.CoreStreamSetFocus(_mStreamFocusGuid)
                     _mStreamFocus = ChromaSDK.Stream._Default.StreamFocus
                     _mLenStreamFocus = 0
