@@ -73,7 +73,7 @@ Module Program
                 selectedIndex = -9
             End If
 
-            Dim platform As Byte
+            Dim platform As Byte = 0
 
             Dim inputTimer As DateTime = DateTime.MinValue
 
