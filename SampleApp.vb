@@ -90,14 +90,34 @@ Class SampleApp
     End Function
 
     Public Function OnApplicationQuit()
-        ChromaAnimationAPI.Uninit()
+        If _mResult.Equals(RazerErrors.RZRESULT_SUCCESS) Then
+            ChromaAnimationAPI.StopAll()
+            ChromaAnimationAPI.CloseAll()
+            Dim result As Integer = ChromaAnimationAPI.Uninit()
+            ChromaAnimationAPI.UninitAPI()
+            If Not result.Equals(RazerErrors.RZRESULT_SUCCESS) Then
+                Console.Error.WriteLine("Failed to uninitialize Chroma!")
+            End If
+        End If
         Return Nothing
     End Function
 
-    Public Function GetEffectName(Index As Integer) As String
-        Select Case (Index)
+    Public Function GetEffectName(index As Integer, platform As Byte) As String
+        Select Case (index)
             Case -9
-                Return "Request Shortcode" & ControlChars.Tab
+                Dim result As String = "Request Shortcode for Platform: "
+
+                Select Case (platform)
+                    Case 0
+                        result += "Windows PC (PC)"
+                    Case 1
+                        result += "Windows Cloud (LUNA)"
+                    Case 2
+                        result += "Windows Cloud (GEFORCE NOW)"
+                    Case 3
+                        result += "Windows Cloud (GAME PASS)"
+                End Select
+                Return result & ControlChars.NewLine
             Case -8
                 Return "Request StreamId" & ControlChars.Tab
             Case -7
@@ -117,17 +137,28 @@ Class SampleApp
             Case 0
                 Return "SetFocus" & vbCrLf
             Case Else
-                Return String.Format("Effect{0}", Index)
+                Return String.Format("Effect{0}", index)
         End Select
     End Function
 
-    Public Function ExecuteItem(index As Integer, supportsStreaming As Boolean)
+    Public Function ExecuteItem(index As Integer, supportsStreaming As Boolean, platform As Byte)
         Select Case (index)
             Case -9
                 If supportsStreaming Then
                     _mShortCode = ChromaSDK.Stream._Default.Shortcode
                     _mLenShortCode = 0
-                    ChromaAnimationAPI.CoreStreamGetAuthShortcode(_mShortCode, _mLenShortCode, "PC", "VB Sample App 好")
+                    Dim strPlatform As String = "PC"
+                    Select Case (platform)
+                        Case 0
+                            strPlatform = "PC"
+                        Case 1
+                            strPlatform = "LUNA"
+                        Case 2
+                            strPlatform = "GEFORCE_NOW"
+                        Case 3
+                            strPlatform = "GAME_PASS"
+                    End Select
+                    ChromaAnimationAPI.CoreStreamGetAuthShortcode(_mShortCode, _mLenShortCode, strPlatform, "VB Sample App 好")
                     If _mLenShortCode > 0 Then
                         _mShortCode = _mShortCode.Substring(0, _mLenShortCode)
                     End If

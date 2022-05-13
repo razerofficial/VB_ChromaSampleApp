@@ -6,12 +6,14 @@ Module Program
 
     Private Const MAX_ITEMS As Integer = 47
 
-    Private Function PrintLegend(app As SampleApp, selectedIndex As Integer, supportsStreaming As Boolean)
+    Private Function PrintLegend(app As SampleApp, selectedIndex As Integer, supportsStreaming As Boolean, platform As Byte)
 
         Console.WriteLine("VB CHROMA SAMPLE APP")
-        Console.WriteLine()
-        Console.WriteLine("Use UP and DOWN arrows to select an animation and press ENTER.")
-        Console.WriteLine()
+        Console.WriteLine("Use `UP` and `DOWN` arrows to select an animation and press `ENTER` to execute.")
+        If (supportsStreaming) Then
+            Console.Write("Use `P` to switch streaming platforms. ")
+        End If
+        Console.WriteLine("Use `ESC` to QUIT.")
 
         Dim startIndex As Integer = 1
 
@@ -33,7 +35,7 @@ Module Program
             Else
                 Console.Write("[ ] ")
             End If
-            Console.Write("{0, 8}", app.GetEffectName(index))
+            Console.Write("{0, 8}", app.GetEffectName(index, platform))
 
             If (index > 0) Then
                 If (index Mod 4).Equals(0) Then
@@ -71,12 +73,14 @@ Module Program
                 selectedIndex = -9
             End If
 
+            Dim platform As Byte
+
             Dim inputTimer As DateTime = DateTime.MinValue
 
             While (True)
                 If inputTimer < DateTime.Now Then
                     Console.Clear()
-                    PrintLegend(sampleApp, selectedIndex, supportsStreaming)
+                    PrintLegend(sampleApp, selectedIndex, supportsStreaming, platform)
                     inputTimer = DateTime.Now + TimeSpan.FromMilliseconds(100)
                 End If
                 Dim keyInfo As ConsoleKeyInfo = Console.ReadKey()
@@ -91,14 +95,14 @@ Module Program
                     End If
                 ElseIf keyInfo.Key.Equals(ConsoleKey.Escape) Then
                     Exit While
+                ElseIf keyInfo.Key.Equals(ConsoleKey.P) Then
+                    platform = (platform + 1) Mod 4 REM PC, AMAZON LUNA, MS GAME PASS, NVIDIA GFN
                 ElseIf keyInfo.Key.Equals(ConsoleKey.Enter) Then
-                    sampleApp.ExecuteItem(selectedIndex, supportsStreaming)
+                    sampleApp.ExecuteItem(selectedIndex, supportsStreaming, platform)
                 End If
                 Thread.Sleep(1)
             End While
 
-            ChromaAnimationAPI.StopAll()
-            ChromaAnimationAPI.CloseAll()
             sampleApp.OnApplicationQuit()
 
         End If
