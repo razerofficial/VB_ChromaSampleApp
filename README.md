@@ -113,7 +113,7 @@ The `ChromaAnimationAPI` module provides a wrapper for the Chroma Editor Library
 The `ChromaAnimationAPI.InitSDK(appInfo)` method returns `RazerErrors.RZRESULT_SUCCESS` when initialization has succeeded. Avoid making calls to the Chroma API when anything other than success is returned. A unsuccessful result indicates `Chroma` is not present on the machine.
 
 ```
-  ChromaSDK.APPINFOTYPE appInfo = new APPINFOTYPE();
+  Dim appInfo As ChromaSDK.APPINFOTYPE = New APPINFOTYPE()
 
   appInfo.Title = "Sample Game Title";
   appInfo.Description = "Sample Game Description";
