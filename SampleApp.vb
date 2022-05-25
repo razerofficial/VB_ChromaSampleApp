@@ -3,7 +3,7 @@ Imports System
 
 Class SampleApp
 
-    Private _mResult As Integer = 0
+    Private _mResult As Integer = -1
     Private _mRandom As Random = New Random()
 
     Private _mShortCode As String = ChromaSDK.Stream._Default.Shortcode
@@ -91,12 +91,14 @@ Class SampleApp
 
     Public Function OnApplicationQuit()
         If _mResult.Equals(RazerErrors.RZRESULT_SUCCESS) Then
-            ChromaAnimationAPI.StopAll()
-            ChromaAnimationAPI.CloseAll()
-            Dim result As Integer = ChromaAnimationAPI.Uninit()
-            ChromaAnimationAPI.UninitAPI()
-            If Not result.Equals(RazerErrors.RZRESULT_SUCCESS) Then
-                Console.Error.WriteLine("Failed to uninitialize Chroma!")
+            If ChromaAnimationAPI.IsInitialized() Then
+                ChromaAnimationAPI.StopAll()
+                ChromaAnimationAPI.CloseAll()
+                Dim result As Integer = ChromaAnimationAPI.Uninit()
+                ChromaAnimationAPI.UninitAPI()
+                If Not result.Equals(RazerErrors.RZRESULT_SUCCESS) Then
+                    Console.Error.WriteLine("Failed to uninitialize Chroma!")
+                End If
             End If
         End If
         Return Nothing
